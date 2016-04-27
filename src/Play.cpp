@@ -59,37 +59,38 @@ void Play::loadDungeon(){       //used to open a user created dungeon
                 Create.addConnector(Create.findRoom(start), Create.findRoom(end2), keyW, desc);
             }
         }
-        cout<<"Dungeon successfully loaded!\n";
+        cout<<"Dungeon successfully loaded!\n\n\n";
+        cin.ignore();
         navigate(&Create.roomList[0]);
         //Create.printRooms();
     }
 }
 
 void Play::navigate(room *currentRoom){
-    room *tempRoom = currentRoom;
-    room *nextRoom;
+    room *nextRoom = currentRoom;
     string userInput;
 
-    cout<<"You are in "<<tempRoom->name<<"."<<endl;
-    cout<<tempRoom->description<<endl;
+    cout<<"You are in "<<currentRoom->name<<"."<<endl;
+    cout<<currentRoom->description<<endl;
     cout<<"Here is a list of places to go: \n";
-    for(int i = 0; i<tempRoom->connections.size(); ++i){
-        cout<<"\t"<<tempRoom->connections[i].keyWord<<endl;
+    for(int i = 0; i<currentRoom->connections.size(); ++i){
+        cout<<"\t"<<currentRoom->connections[i].keyWord<<endl;
     }
-    cout<<"Where would you like to go? ";
-    cin.ignore();
-    getline(cin, userInput);
+    cout<<"\nWhere would you like to go? ";
+    getline(cin, userInput, '\n');
     cout<<endl;
-    for(int i = 0; i<tempRoom->connections.size(); ++i){
-        if(userInput == tempRoom->connections[i].keyWord){
-            nextRoom = tempRoom->connections[i].exit;
+
+
+    for(int i = 0; i<currentRoom->connections.size(); ++i){
+        if(userInput == currentRoom->connections[i].keyWord){
+            nextRoom = currentRoom->connections[i].exit;
         }
     }
-    //if(!(nextRoom->isExit)){
-        navigate(nextRoom);
-    //}
+
+    if(nextRoom->isExit){
+        ending(nextRoom);
     }
-    else ending(nextRoom);
+    else navigate(nextRoom);
 }
 
 void Play::ending(room *finale){

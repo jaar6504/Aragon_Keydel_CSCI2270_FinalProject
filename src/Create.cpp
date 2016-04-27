@@ -21,7 +21,7 @@ void Create::createLoop(){
     cout<<"\t    (Press Enter to Begin)";
     cin.ignore();
 
-    while(userInput != "6"){                  //This menu will constantly be running. There may be a more optimal way
+    while(userInput != "quit"){                  //This menu will constantly be running. There may be a more optimal way
         cout<<"\n===== Create Menu =====\n";
         cout<<"1. Create a New Element\n";
         cout<<"2. Edit an Existing Element\n";
@@ -77,7 +77,7 @@ void Create::createLoop(){
 
         }
         else if(userInput == "7"){
-            cout<<"\nWould you like to return to the main menu? \nAll unsaved progress will be lost!\n (y/n) ";
+            cout<<"\nWould you like to return to the main menu? (y/n)\t";
             getline(cin, userInput, '\n');
             if(userInput == "y"){break;}
             else{userInput = "7";}
@@ -120,6 +120,7 @@ void Create::editRoom(room* toEdit){
     }
     else if(edit == "2"){
             toEdit->isExit = true;
+            cout<<toEdit->name<<" is now an exit!";
     }
     else{cout<<"Please make sure to choose either [1] or [2]."<<endl;}
 
@@ -322,17 +323,21 @@ room* Create::findRoom(string name){
 }
 
 void Create::printRooms(){
-    cin.ignore();
     if(roomList.size() == 0){
         cout<<"Nothing to display.\n";
     }
     for(int i=0; i<roomList.size(); i++){
-        cout<<"\n\tRoom Name: "<<roomList[i].name<<endl;
+        cout<<"\n\tRoom Name: "<<roomList[i].name;
+        if(roomList[i].isExit){
+            cout<<" *"<<endl;
+        }
+        else{cout<<endl;}
+
         cout<<"\tDescription: "<<roomList[i].description<<endl;
         cout<<"\tConnections: "<<endl;
         //cout<<"\t\tStart Room: \tEnd Room: \tKey Word: \tDescription: \n";
         for(int j=0; j<roomList[i].connections.size(); j++){
-            cout<<"\t\tStart Room: "<<roomList[i].connections[j].start->name<<"\tEnd Room: "<<roomList[i].connections[j].exit->name<<"\tKey Word: "<<roomList[i].connections[j].keyWord<<endl;
+            cout<<"\t\t\tEnd Room: "<<roomList[i].connections[j].exit->name<<"\tKey Word: "<<roomList[i].connections[j].keyWord<<endl;
             cout<<"\t\tDescription: "<<roomList[i].connections[j].description<<endl;
         }
     }
