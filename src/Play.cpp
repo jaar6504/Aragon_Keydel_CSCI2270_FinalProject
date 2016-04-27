@@ -66,28 +66,30 @@ void Play::loadDungeon(){       //used to open a user created dungeon
 }
 
 void Play::navigate(room *currentRoom){
+    room *tempRoom = currentRoom;
     room *nextRoom;
     string userInput;
 
-    cout<<"You are in "<<currentRoom->name<<"."<<endl;
-    cout<<currentRoom->description<<endl;
+    cout<<"You are in "<<tempRoom->name<<"."<<endl;
+    cout<<tempRoom->description<<endl;
     cout<<"Here is a list of places to go: \n";
-    for(int i = 0; i<currentRoom->connections.size(); ++i){
-        cout<<"\t"<<currentRoom->connections[i].keyWord<<endl;
+    for(int i = 0; i<tempRoom->connections.size(); ++i){
+        cout<<"\t"<<tempRoom->connections[i].keyWord<<endl;
     }
     cout<<"Where would you like to go? ";
     cin.ignore();
     getline(cin, userInput);
     cout<<endl;
-    for(int i = 0; i<currentRoom->connections.size(); ++i){
-        if(userInput == currentRoom->connections[i].keyWord){
-            nextRoom = currentRoom->connections[i].exit;
+    for(int i = 0; i<tempRoom->connections.size(); ++i){
+        if(userInput == tempRoom->connections[i].keyWord){
+            nextRoom = tempRoom->connections[i].exit;
         }
     }
-    if(nextRoom->isExit){
-        ending(nextRoom);
+    //if(!(nextRoom->isExit)){
+        navigate(nextRoom);
+    //}
     }
-    else navigate(nextRoom);
+    else ending(nextRoom);
 }
 
 void Play::ending(room *finale){

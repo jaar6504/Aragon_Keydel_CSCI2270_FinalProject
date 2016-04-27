@@ -29,8 +29,7 @@ int main(){
             return 0;
         }
         else{
-            cout<<"Please make sure to choose either [y] or [n]."<<endl;
-            cin.get();
+            cout<<"Please make sure to choose either [1] or [2]."<<endl;
         }
     }
 }
