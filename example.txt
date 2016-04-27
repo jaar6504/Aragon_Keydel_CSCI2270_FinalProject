@@ -1,0 +1,11 @@
+Entrance#You enter the dungeon. You notice a hole (hole) leading to a system of caves. There is also a staircase leading up (stairs up) and down (stairs down).#0
+Caves#You have entered some caves. Theres nothing here.#0
+Staircase#The staircase spirals up into a tower. Something tells you to turn back (stairs down), or you can press onward (keep going).#0
+Tower#You conquer the tower, save the princess, whatever.#1
+%
+Entrance,Caves,hole,You lower yourself through the hole.
+Entrance,Entrance,stairs down,The stairway leading downwards has collapsed! You can't go this way.
+Entrance,Staircase,stairs up,You ascend the staircase.
+Caves,Entrance,hole,You climb back up the hole.
+Staircase,Entrance,stairs down,You descend the staircase.
+Staircase,Tower,keep going,You decide to keep going.
