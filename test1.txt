@@ -1,0 +1,9 @@
+Room A#Desc A
+Room B#Desc B
+Room C#Desc C
+%
+Room A,Room B,ab,conn ab
+Room A,Room C,ac,Conn ac
+Room B,Room A,btoa,b to a
+Room B,Room C,btoc,b to c
+Room C,Room A,ac,Conn ac
